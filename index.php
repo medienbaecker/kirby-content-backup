@@ -1,11 +1,10 @@
 <?php
+
 Kirby::plugin('medienbaecker/content-backup', [
-	'routes' => [
-		[
-			'pattern' => 'backup',
-			'method' => 'GET|POST',
-			'action'  => function() {
-				function Zip($source, $destination) {
+	'options' => [
+        'jobs' => [
+            'backup' => function() {
+                function Zip($source, $destination) {
 					if (!extension_loaded('zip') || !file_exists($source)) {
 						return false;
 					}
@@ -35,8 +34,12 @@ Kirby::plugin('medienbaecker/content-backup', [
 				$index = kirby()->root('index');
 				$content = $index . '/content';
 				Zip($content,  $content . '.zip');
-				return '<a href="' . site()->url() . '/content.zip">Download content.zip</a>';
-			}
-		]
-  	]
+				return [
+					'status' => 200,
+					'label' => 'Downloading backup',
+					'download' => site()->url() . '/content.zip'
+				];
+            },
+        ],
+   ],
 ]);
