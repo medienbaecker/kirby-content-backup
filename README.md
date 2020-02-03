@@ -6,7 +6,9 @@
 
 https://github.com/bnomei/kirby3-janitor
 
-### Step 2: Add this to site/config.php
+### Step 2: Install this plugin
+
+### Step 3: Add this to site/config.php
 
 ```php
 'bnomei.janitor.jobs.extends' => [
@@ -14,7 +16,7 @@ https://github.com/bnomei/kirby3-janitor
 ],
 ```
 
-### Step 3: Add a backup field
+### Step 4: Add a backup field
 
 ```yml
 backup:
